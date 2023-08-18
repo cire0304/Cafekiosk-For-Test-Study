@@ -1,5 +1,6 @@
 package sample.cafekiosk.unit;
 
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import sample.cafekiosk.unit.beverage.Americano;
 import sample.cafekiosk.unit.beverage.Latte;
@@ -21,6 +22,7 @@ class CafeKioskTest {
         System.out.println(">>> 담긴 음료" + cafeKiosk.getBeverages().get(0).getName());
     }
 
+    @DisplayName("음료 1개 추가하면 주문 목록에 담긴다")
     @Test
     void add() {
         CafeKiosk cafeKiosk = new CafeKiosk();
@@ -77,6 +79,24 @@ class CafeKioskTest {
         assertThat(cafeKiosk.getBeverages().size()).isEqualTo(0);
     }
 
+    @DisplayName("주문목록에 담긴 상품들의 총 금액을 계산할 수 있다.")
+    @Test
+    void calculateTotalPrice() {
+        // given
+        CafeKiosk cafeKiosk = new CafeKiosk();
+        Americano americano = new Americano();
+        Latte latte = new Latte();
+
+        cafeKiosk.add(americano);
+        cafeKiosk.add(latte);
+
+        // when
+        int total = cafeKiosk.calculateTotalPrice();
+
+        // then
+        assertThat(total).isEqualTo(8500);
+    }
+
     public void createOder () {
         CafeKiosk cafeKiosk = new CafeKiosk();
         Americano americano = new Americano();
@@ -113,6 +133,17 @@ class CafeKioskTest {
              .isInstanceOf(IllegalArgumentException.class);
 
     }
+
+    @DisplayName("")
+    @Test
+    public void asdfasdf () {
+        //given
+
+        //when
+
+        //then
+     }
+
 
 
 }
